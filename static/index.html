@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Paraphrasing</title>
+    <script>
+        async function submitForm(event) {
+            event.preventDefault();
+            //outputDiv.innerHTML = 'Processing ...';
+            const outputDiv = document.getElementById('output');
+            const session_id = document.getElementById('session_id').value;
+            // const session_id = '';
+
+            const response = await fetch('{{ url_for("submit") }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: new URLSearchParams({ session_id })
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+
+                // outputDiv.innerHTML = `
+                //     <h2>Submitted Values</h2>
+                //     <p><strong>Session ID:</strong> ${data.session_id}</p>
+                //     <p><strong>Goal:</strong> ${data.goal}</p>
+                //     <p><strong>Activities:</strong> ${data.activities}</p>
+                // `;
+                outputDiv.innerHTML = JSON.stringify(data);
+                if (data.hasOwnProperty('session_id')) {
+                    document.getElementById('session_id').value = data.session_id;
+                    outputDiv.innerHTML = data.sections.GENERATE_SCENARIO;
+                }
+            } else {
+                outputDiv.innerHTML = '<p>An error occurred while submitting the form.</p>';
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Paraphrasing</h1>
+    <form onsubmit="submitForm(event)">
+        <label for="session_id">Session ID:</label>
+        <input type="text" name="session_id" id="session_id">
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <div id="output"></div>
+</body>
+</html>
