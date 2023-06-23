@@ -90,6 +90,37 @@
             </div>
         </div>
     </div>
+    <script>
+        var states = {
+            isFirstInteraction: true,
+            previousPrompt: "",
+            previousResponse: "",
+            lastPrompt: "",
+            lastResponse: "",
+        };
+        
+        $("#submit-button").click(function() {
+            var input = $("#input-field").val();
+            if (states.isFirstInteraction) {
+                states.previousPrompt = input;
+                states.lastPrompt = input;
+                states.isFirstInteraction = false;
+                $("#submit-button").text("Submit Feedback");  // Change button text after first interaction
+                // call your API with input as a prompt, then update states.previousResponse and states.lastResponse based on the result
+            } else {
+                // call your API with input as feedback, then update states.lastPrompt and states.lastResponse based on the result
+            }
+        
+            // Clear the input field after every submission
+            $("#input-field").val("");
+        
+            // Update UI based on states
+            $("#previous-prompt").val(states.previousPrompt);
+            $("#previous-response").val(states.previousResponse);
+            $("#last-prompt").val(states.lastPrompt);
+            $("#last-response").val(states.lastResponse);
+        });
+    </script>
     <h1>Prompt Engineering</h1>
     <form onsubmit="submitForm(event)">
         <label for="session_id">Session ID:</label>
