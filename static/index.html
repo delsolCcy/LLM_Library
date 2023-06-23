@@ -108,10 +108,10 @@
                 states.previousPrompt = input;
                 states.isFirstInteraction = false;
                 $("#submit-button").text("Submit Feedback");  // Change button text after first interaction
-                submitForm(input_val)
+                submitForm(input)
                 // call your API with input as a prompt, then update states.previousResponse and states.lastResponse based on the result
             } else {
-                submitForm(input_val)
+                submitForm(input)
                 // call your API with input as feedback, then update states.lastPrompt and states.lastResponse based on the result
             }
         
