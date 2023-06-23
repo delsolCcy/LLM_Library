@@ -43,23 +43,35 @@
 </head>
 <body>
     <div class="container py-4">
-        <h2 class="text-center">Language Model Prompt Designer</h2>
-        <div id="user-input" class="mt-4">
-            <input type="text" id="prompt" class="form-control" placeholder="Write your prompt here...">
-            <button id="submit" class="btn btn-primary mt-2">Submit</button>
+        <h2 class="text-center mb-4">Language Model Prompt Designer</h2>
+
+        <div class="row mb-4">
+            <div class="col">
+                <input type="text" id="input-field" class="form-control" placeholder="Write your prompt or feedback here...">
+                <button id="submit-button" class="btn btn-primary mt-2">Submit</button>
+            </div>
         </div>
-        <div id="chatbot-output" class="mt-4">
-            <h4>Chatbot Response</h4>
-            <textarea id="response" class="form-control" rows="5" readonly></textarea>
+
+        <div class="row mb-4">
+            <div class="col-6">
+                <h4>Previous Prompt</h4>
+                <textarea id="previous-prompt" class="form-control mb-4" rows="3" readonly></textarea>
+                <h4>Previous Response</h4>
+                <textarea id="previous-response" class="form-control" rows="3" readonly></textarea>
+            </div>
+            <div class="col-6">
+                <h4>Last Prompt</h4>
+                <textarea id="last-prompt" class="form-control mb-4" rows="3" readonly></textarea>
+                <h4>Last Response</h4>
+                <textarea id="last-response" class="form-control" rows="3" readonly></textarea>
+            </div>
         </div>
-        <div id="user-feedback" class="mt-4">
-            <h4>Your Feedback</h4>
-            <input type="text" id="feedback" class="form-control" placeholder="Provide feedback here...">
-            <button id="feedback-submit" class="btn btn-primary mt-2">Submit Feedback</button>
-        </div>
-        <div id="system-output" class="mt-4">
-            <h4>Improved Prompt and Lesson</h4>
-            <textarea id="improved-prompt" class="form-control" rows="5" readonly></textarea>
+
+        <div class="row">
+            <div class="col">
+                <h4>Lesson</h4>
+                <textarea id="lesson" class="form-control" rows="5" readonly></textarea>
+            </div>
         </div>
     </div>
     <h1>Prompt Engineering</h1>
