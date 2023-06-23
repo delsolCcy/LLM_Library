@@ -20,7 +20,7 @@
     <script>
         var session_id = '';
         
-        async function submitForm(input_var) {
+        async function submitForm(input_val) {
             event.preventDefault();
             var outputDiv = document.getElementById('output');
             outputDiv.innerHTML = 'Processing ...';
@@ -33,7 +33,7 @@
                 },
                 body: {
                     'session_id': session_id,
-                    'input_var': input_var
+                    'input_val': input_val
                 }
             });
 
