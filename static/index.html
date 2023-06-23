@@ -18,20 +18,23 @@
         }
     </style>
     <script>
-        async function submitForm(event) {
+        var session_id = '';
+        
+        async function submitForm(input_var) {
             event.preventDefault();
-            //outputDiv.innerHTML = 'Processing ...';
-            const outputDiv = document.getElementById('output');
-            const session_id = document.getElementById('session_id').value;
-            const GET_PROMPT = document.getElementById('GET_PROMPT').value;
+            var outputDiv = document.getElementById('output');
+            outputDiv.innerHTML = 'Processing ...';
             // const session_id = '';
-
+            
             const response = await fetch('/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
-                body: new URLSearchParams({ session_id })
+                body: {
+                    'session_id': session_id,
+                    'input_var': input_var
+                }
             });
 
             if (response.ok) {
@@ -45,7 +48,7 @@
                 // `;
                 outputDiv.innerHTML = JSON.stringify(data);
                 if (data.hasOwnProperty('session_id')) {
-                    document.getElementById('session_id').value = data.session_id;
+                    session_id = data.session_id;
                 }
             } else {
                 outputDiv.innerHTML = '<p>An error occurred while submitting the form.</p>';
@@ -103,11 +106,12 @@
             var input = $("#input-field").val();
             if (states.isFirstInteraction) {
                 states.previousPrompt = input;
-                states.lastPrompt = input;
                 states.isFirstInteraction = false;
                 $("#submit-button").text("Submit Feedback");  // Change button text after first interaction
+                submitForm(input_var)
                 // call your API with input as a prompt, then update states.previousResponse and states.lastResponse based on the result
             } else {
+                submitForm(input_var)
                 // call your API with input as feedback, then update states.lastPrompt and states.lastResponse based on the result
             }
         
@@ -121,7 +125,7 @@
             $("#last-response").val(states.lastResponse);
         });
     </script>
-    <h1>Prompt Engineering</h1>
+    <!-- <h1>Prompt Engineering</h1>
     <form onsubmit="submitForm(event)">
         <label for="session_id">Session ID:</label>
         <input type="text" name="session_id" id="session_id">
@@ -130,7 +134,7 @@
         <input type="text" size=30 name="GET_PROMPT" id="GET_PROMPT" value="I want a recipe for a person with dietary restrictions.">
         <br>
         <input type="submit" value="Submit">
-    </form>
+    </form> -->
 
     <div id="output"></div>
 </body>
