@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Paraphrasing</title>
+    <title>Prompt Engineering</title>
     <script>
         async function submitForm(event) {
             event.preventDefault();
             //outputDiv.innerHTML = 'Processing ...';
             const outputDiv = document.getElementById('output');
             const session_id = document.getElementById('session_id').value;
+            const GET_PROMPT = document.getElementById('GET_PROMPT').value;
             // const session_id = '';
 
             const response = await fetch('{{ url_for("submit") }}', {
@@ -31,7 +32,6 @@
                 outputDiv.innerHTML = JSON.stringify(data);
                 if (data.hasOwnProperty('session_id')) {
                     document.getElementById('session_id').value = data.session_id;
-                    outputDiv.innerHTML = data.sections.GENERATE_SCENARIO;
                 }
             } else {
                 outputDiv.innerHTML = '<p>An error occurred while submitting the form.</p>';
@@ -40,10 +40,12 @@
     </script>
 </head>
 <body>
-    <h1>Paraphrasing</h1>
+    <h1>Prompt Engineering</h1>
     <form onsubmit="submitForm(event)">
         <label for="session_id">Session ID:</label>
         <input type="text" name="session_id" id="session_id">
+        <label for="GET_PROMPT">GET_PROMPT:</label>
+        <input type="text" name="GET_PROMPT" id="GET_PROMPT">
         <br>
         <input type="submit" value="Submit">
     </form>
