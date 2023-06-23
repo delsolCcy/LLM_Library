@@ -49,6 +49,11 @@
                 outputDiv.innerHTML = JSON.stringify(data);
                 if (data.hasOwnProperty('session_id')) {
                     session_id = data.session_id;
+                    if (data.hasOwnProperty('sections')) {
+                        if (data.sections.hasOwnProperty('GENERATE_RESPONSE')) {
+                            $("#previous-response").val(data.sections.GENERATE_RESPONSE);
+                        }
+                    }
                 }
             } else {
                 outputDiv.innerHTML = '<p>An error occurred while submitting the form.</p>';
