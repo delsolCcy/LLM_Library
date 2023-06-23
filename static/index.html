@@ -12,7 +12,7 @@
             const GET_PROMPT = document.getElementById('GET_PROMPT').value;
             // const session_id = '';
 
-            const response = await fetch('{{ url_for("/") }}', {
+            const response = await fetch('/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
