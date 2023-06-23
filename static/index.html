@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Prompt Engineering</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script>
         async function submitForm(event) {
             event.preventDefault();
@@ -40,6 +42,26 @@
     </script>
 </head>
 <body>
+    <div class="container py-4">
+        <h2 class="text-center">Language Model Prompt Designer</h2>
+        <div id="user-input" class="mt-4">
+            <input type="text" id="prompt" class="form-control" placeholder="Write your prompt here...">
+            <button id="submit" class="btn btn-primary mt-2">Submit</button>
+        </div>
+        <div id="chatbot-output" class="mt-4">
+            <h4>Chatbot Response</h4>
+            <textarea id="response" class="form-control" rows="5" readonly></textarea>
+        </div>
+        <div id="user-feedback" class="mt-4">
+            <h4>Your Feedback</h4>
+            <input type="text" id="feedback" class="form-control" placeholder="Provide feedback here...">
+            <button id="feedback-submit" class="btn btn-primary mt-2">Submit Feedback</button>
+        </div>
+        <div id="system-output" class="mt-4">
+            <h4>Improved Prompt and Lesson</h4>
+            <textarea id="improved-prompt" class="form-control" rows="5" readonly></textarea>
+        </div>
+    </div>
     <h1>Prompt Engineering</h1>
     <form onsubmit="submitForm(event)">
         <label for="session_id">Session ID:</label>
