@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Research Assistant</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+        .active {
+            font-weight: bold;
+        }
+        .user {
+            text-align: right;
+            color: blue;
+        }
+        .ai {
+            text-align: left;
+            color: green;
+        }
+        .narrative {
+            border: 1px solid #000;
+            padding: 10px;
+            margin: 10px 0;
+            min-height: 150px;
+        }
+        .flex-equal {
+            display: flex;
+            flex-direction: column;
+        }
+        .flex-equal > div {
+            flex: 1;
+        }
+        .chat-panel {
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-panel .chat-body {
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4">AI Research Assistant</h1>
+
+        <div class="row">
+            <!-- Conversation List Panel -->
+            <div class="col-md-3 flex-equal">
+                <div class="card flex-grow-1">
+                    <div class="card-header">Conversations</div>
+                    <div class="card-body">
+                        <ul id="conversation-list">
+                            <li class="active">Conversation 1</li>
+                            <li>Conversation 2</li>
+                            <li>Conversation 3</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Interface Panel -->
+            <div class="col-md-4 flex-equal">
+                <div class="card flex-grow-1">
+                    <div class="card-header">Chat</div>
+                    <div class="card-body chat-panel">
+                        <div class="chat-body">
+                            <div class="user">Hello AI</div>
+                            <div class="ai">Hello User</div>
+                            <div class="user">Can you help me with my research?</div>
+                        </div>
+                        <form id="chat-form" class="mt-3">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="chat-input" placeholder="Enter your message">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- References and Narrative Panel -->
+            <div class="col-md-5 flex-equal">
+                <div class="card flex-grow-1">
+                    <div class="card-header">References</div>
+                    <div class="card-body">
+                        <ul id="reference-list">
+                            <li class="active">Reference 1</li>
+                            <li>Reference 2</li>
+                            <li>Reference 3</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card mt-2 flex-grow-1">
+                    <div class="card-header">Validation</div>
+                    <div class="card-body" id="validation-panel">
+                        Validation details for Reference 1
+                    </div>
+                </div>
+                <div class="card mt-2 flex-grow-1">
+                    <div class="card-header">Narrative</div>
+                    <div class="card-body narrative">
+                        AI's answer for user's last question will appear here.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $('#chat-form').submit(function(e) {
+            e.preventDefault();
+            var chatInput = $('#chat-input').val();
+            $('.chat-body').append('<div class="user">' + chatInput + '</div>');
+            $('#chat-input').val('');
+            // Add your logic here to get AI response and append it to chat body
+        });
+
+        $('#conversation-list li').click(function(e) {
+            $('#conversation-list li').removeClass('active');
+            $(this).addClass('active');
+            // Add your logic here to switch the conversation in the chat panel
+        });
+
+        $('#reference-list li').click(function(e) {
+            $('#reference-list li').removeClass('active');
+            $(this).addClass('active');
+            $('#validation-panel').text('Validation details for ' + $(this).text());
+        });
+    </script>
+</body>
+</html>
