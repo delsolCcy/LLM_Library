@@ -124,11 +124,18 @@
                   console.log(event);
                   paragraphStream += wordStream + '\n';
                   wordStream = '';
+                  statusLabel = event.data;
+                  let data = JSON.parse(event.data);
+                  data.interState = 'intermediate';
+                  handleData(data);
               });
       
               eventSource.addEventListener('finished', function(event) {
                   console.log(event);
                   statusLabel = event.data;
+                  let data = JSON.parse(event.data);
+                  data.interState = 'finished';
+                  handleData(data);
                   eventSource.close();
               });
             }
@@ -154,7 +161,7 @@
     
         function handleData(data) {
           if (data.hasOwnProperty('interState')) {
-            if (data.interState = 'finished') {
+            if (data.interState == 'finished') {
               processData(data);
             }
           } else {
