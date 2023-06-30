@@ -102,9 +102,6 @@
                 'input_val': input_val
             }
             if (typeof stream !== "undefined" && stream) {
-              let wordStream = '';
-              let paragraphStream = '';
-              let statusLabel = '';
               let params = (new URLSearchParams(submitParams)).toString();
               let url = '/?stream=true';
               if (params) {
@@ -113,6 +110,7 @@
               const eventSource = new EventSource(url);
       
               eventSource.onmessage = function(event) {
+                  console.log(event.data);
                   outputDiv.textContent += event.data;
               };
       
