@@ -75,11 +75,9 @@
                 states.previousPrompt = input;
                 states.isFirstInteraction = false;
                 $("#submit-button").text("Submit Feedback");  // Change button text after first interaction
-                submitForm(input, true)
-                // call your API with input as a prompt, then update states.previousResponse and states.lastResponse based on the result
+                submitForm(input, true);
             } else {
-                submitForm(input)
-                // call your API with input as feedback, then update states.lastPrompt and states.lastResponse based on the result
+                submitForm(input, true);
             }
         
             // Clear the input field after every submission
@@ -115,7 +113,7 @@
               const eventSource = new EventSource(url);
       
               eventSource.onmessage = function(event) {
-                  console.log(event);
+                  // console.log(event);
                   wordStream += event.data + ' ';
                   outputDiv.textContent = wordStream;
               };
