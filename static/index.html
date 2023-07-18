@@ -61,6 +61,7 @@
     </div>
     <div id="output"></div>
     <script>
+        var streamEnabled = false;
         var states = {
             isFirstInteraction: true,
             previousPrompt: "",
@@ -75,9 +76,9 @@
                 states.previousPrompt = input;
                 states.isFirstInteraction = false;
                 $("#submit-button").text("Submit Feedback");  // Change button text after first interaction
-                submitForm(input, true);
+                submitForm(input, streamEnabled);
             } else {
-                submitForm(input, true);
+                submitForm(input, streamEnabled);
             }
         
             // Clear the input field after every submission
@@ -103,11 +104,11 @@
             }
             if (typeof stream !== "undefined" && stream) {
               let params = (new URLSearchParams(submitParams)).toString();
-              // let url = '/?stream=true';
-              let url = '/?';
+              let url = '/?stream=true';
+              // let url = '/?';
               if (params) {
-                // url += '&' + params;
-                url += params;
+                url += '&' + params;
+                // url += params;
               }
               const eventSource = new EventSource(url);
       
