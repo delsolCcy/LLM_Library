@@ -103,9 +103,11 @@
             }
             if (typeof stream !== "undefined" && stream) {
               let params = (new URLSearchParams(submitParams)).toString();
-              let url = '/?stream=true';
+              // let url = '/?stream=true';
+              let url = '/?';
               if (params) {
-                url += '&' + params;
+                // url += '&' + params;
+                url += params;
               }
               const eventSource = new EventSource(url);
       
