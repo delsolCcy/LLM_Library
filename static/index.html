@@ -29,7 +29,7 @@
         <div class="row mb-4">
             <div class="col">
                 <div class="input-group">
-                    <input type="text" id="input-field" class="form-control" placeholder="Write your prompt or feedback here..." value="I want a recipe for a person with dietary restrictions.">
+                    <input type="text" id="input-field" class="form-control" placeholder="Write your prompt or feedback here..." value="I want to learn about ... include 3 references.">
                     <div class="input-group-append">
                         <button id="submit-button" class="btn btn-primary">Submit Prompt</button>
                     </div>
@@ -52,6 +52,26 @@
             </div>
         </div>
 
+        
+            <div class="container py-4">
+        <h2 class="text-center mb-4">
+            Prompt Designer
+            <i id="loading-icon" class="fas fa-spinner fa-spin" style="display: none;"></i>
+        </h2>
+
+        <div class="row mb-4">
+            <div class="col">
+                <div class="input-group">
+                    <input type="text" id="input-field" class="form-control" placeholder="Write your prompt or feedback here..." value="I want to learn about ... include 3 references.">
+                    <div class="input-group-append">
+                        <button id="submit-button" class="btn btn-primary">Submit Prompt</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        
         <div class="row">
             <div class="col">
                 <h4>Lesson</h4>
@@ -60,6 +80,7 @@
         </div>
     </div>
     <div id="output"></div>
+    
     <script>
         var streamEnabled = false;
         var states = {
